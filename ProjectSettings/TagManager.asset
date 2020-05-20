@@ -13,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Ladders
+  - Player
+  - Background
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 70202023
+    locked: 0
+  - name: Climbables
+    uniqueID: 2178807623
     locked: 0
   - name: Player
     uniqueID: 3087309189
