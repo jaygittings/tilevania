@@ -169,6 +169,7 @@ public class Player : MonoBehaviour
         {
             isDead = true;
             animator.SetTrigger("Hurt");
+            StartCoroutine(Restart());
         }
     }
 

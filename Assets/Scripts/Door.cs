@@ -18,6 +18,6 @@ public class Door : MonoBehaviour
         Time.timeScale = .1f;
         yield return new WaitForSecondsRealtime(2f);
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        FindObjectOfType<Session>().LevelCompleted();
     }
 }

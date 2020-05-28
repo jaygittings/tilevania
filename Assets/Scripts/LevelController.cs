@@ -24,6 +24,12 @@ public class LevelController : MonoBehaviour
 
     public void MainMenu()
     {
+        Destroy(FindObjectOfType<Session>().gameObject);
         SceneManager.LoadScene("Main Menu");
+    }
+
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,8 +7,12 @@ using UnityEngine.SceneManagement;
 public class Session : MonoBehaviour
 {
     [SerializeField] int maxPlayerLives = 3;
+    [SerializeField] int currentCoins = 0;
+    [SerializeField] HeartDisplay hearts = null;
+    [SerializeField] CoinDisplay coins = null;
 
     int currentPlayerLives;
+    int coinsAtLevelStart;
 
     //Singleton pattern
     private void Awake()
@@ -29,6 +34,7 @@ public class Session : MonoBehaviour
     void Start()
     {
         currentPlayerLives = maxPlayerLives;
+        coinsAtLevelStart = currentCoins;
     }
 
     // Update is called once per frame
@@ -40,6 +46,7 @@ public class Session : MonoBehaviour
     public void PlayerDied()
     {
         currentPlayerLives--;
+        hearts.SetHearts(currentPlayerLives);
 
         if(currentPlayerLives <= 0)
         {
@@ -50,7 +57,21 @@ public class Session : MonoBehaviour
         else
         {
             //restart scene
+            currentCoins = coinsAtLevelStart;
+            coins.UpdateCoins(currentCoins);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+    }
+
+    public void AddCoin()
+    {
+        currentCoins++;
+        coins.UpdateCoins(currentCoins);
+    }
+
+    public void LevelCompleted()
+    {
+        coinsAtLevelStart = currentCoins;
+        FindObjectOfType<LevelController>().LoadNextLevel();
     }
 }
